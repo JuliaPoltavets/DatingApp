@@ -19,7 +19,9 @@ namespace DatingApp.API.Controllers
         {
             _context = context;
         }
+        
         // GET api/values
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
@@ -35,6 +37,7 @@ namespace DatingApp.API.Controllers
             var value = await _context.Values.FirstOrDefaultAsync(v => v.Id == id);
 
             return Ok(value);
+
         }
 
         // POST api/values
