@@ -9,7 +9,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError(error => {
                 if (error instanceof HttpErrorResponse) {
-                    if(error.status === 401) {
+                    if (error.status === 0) { // server is down
+                        return throwError(error.statusText);
+                    }
+                    if (error.status === 401) { // either username or password are incorrect
                         return throwError(error.statusText);
                     }
                     const applicationError = error.headers.get('Application-Error');
@@ -25,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                             }
                         }
                     }
-                    return throwError (modalStateError || serverError || 'Server Error');
+                    return throwError(modalStateError || serverError || 'Server Error');
                 }
             })
         );
