@@ -18,7 +18,7 @@ export class MemberDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.user = data.user;
+      this.user = data['user'];
     }, error => {
       this.alertify.error(error);
     });
@@ -40,15 +40,15 @@ export class MemberDetailComponent implements OnInit {
   getImages() {
     const imageUrls = [];
     for (const photo of this.user.photos) {
-      imageUrls.push({
+      const imgUrl = {
         small: photo.url,
         medium: photo.url,
         big: photo.url,
         description: photo.description
-      });
-
-      return imageUrls;
+      };
+      imageUrls.push(imgUrl);
     }
+    return imageUrls;
   }
 
   /*  loadUser() {
