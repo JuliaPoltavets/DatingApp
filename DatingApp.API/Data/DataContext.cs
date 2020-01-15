@@ -1,5 +1,6 @@
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DatingApp.API.Data
 {

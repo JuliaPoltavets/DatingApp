@@ -1,4 +1,13 @@
+# IDE MS Visual Studio
+.vs/*
+
+# IDE VS Code
 .vscode
+
+#Folders
 bin
 obj
+
+#Files
 *.db
+*.user
