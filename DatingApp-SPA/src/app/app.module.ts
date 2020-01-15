@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +51,7 @@ export function tokenGetter() {
       PhotoEditorComponent
    ],
    imports: [
+      BrowserAnimationsModule,
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
@@ -61,8 +63,8 @@ export function tokenGetter() {
       JwtModule.forRoot({
          config: {
             tokenGetter,
-            whitelistedDomains: ['localhost:5000'],
-            blacklistedRoutes: ['localhost:5000/api/auth']
+            whitelistedDomains: ['localhost:8083','localhost:5000'],
+            blacklistedRoutes: ['localhost:8083/api/auth','localhost:5000/api/auth']
          }
       }),
       FileUploadModule

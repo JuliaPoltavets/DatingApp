@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  datingappapi:
+    build:
+      context: DatingApp.API
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    environment: 
+        DEFAULT_CONNECTION_STRING: Server=db;Database=master;User=sa;Password=${SQL_SA_PASSWORD}
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+        SA_PASSWORD: ${SQL_SA_PASSWORD}
+        ACCEPT_EULA: "Y"
+    ports:
+      - "8083:1433"
+  datingappclient:
+    build:
+      context: DatingApp-SPA
+      dockerfile: ./Dockerfile
+    depends_on:
+      - datingappapi
+    ports:
+      - "4200:4200"
